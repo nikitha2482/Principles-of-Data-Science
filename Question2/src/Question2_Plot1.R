@@ -2,23 +2,23 @@
 Student = read.csv("C:/Users/DELL/OneDrive/Desktop/StudentsPerformance.csv")
 Student
 
-#Getting the info of complete csv
+#acquiring the entire CSV's information
 summary(Student)
 
 
-#creating a data frame
+#assembling a data frame
 Student_Data <- as.data.frame(Student)
 Student_Data
 dim(Student_Data)
 
-#removinf index column
+#deleting the index column
 Student_Data=within(Student_Data, rm("X"))
 
-#Understanding the data and dimensions
+#Knowing the information and dimensions
 names(Student_Data)
 dim(Student_Data)
 
-#Getting the top rows
+#Obtaining the front rows
 head(Student_Data)
 summary(Student_Data)
 
