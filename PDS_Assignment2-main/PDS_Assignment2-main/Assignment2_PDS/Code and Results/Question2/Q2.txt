@@ -1,0 +1,37 @@
+# Converting 'Mileage' column into string
+df['Mileage'] = df['Mileage'].astype(str)
+
+# removing "kmpl" from the 'Mileage'
+df['Mileage'] = df['Mileage'].str.replace(' kmpl', '')
+
+# Handling missing/null values
+df['Mileage'] = df['Mileage'].replace('', None)
+
+# Removing non-numeric char from 'Mileage'
+df['Mileage'] = df['Mileage'].str.replace(' km/kg', '', regex=True)
+
+# Converting to Mileage to float
+df['Mileage'] = df['Mileage'].astype(float)
+
+# Remove CC from Engine 
+df['Engine'] = df['Engine'].astype(str)
+df['Engine'] = df['Engine'].str.replace(' CC', '').astype(float)
+
+#Remove bhp from Power
+df['Power'] = df['Power'].astype(str)
+df['Power'] = df['Power'].str.replace(' bhp', '', regex=True)
+df['Power'] = df['Power'].str.replace('null', '0', regex=True).astype(float)
+
+#lakh from New_price
+# Convert the 'New_Price' column to a string type
+df['New_Price'] = df['New_Price'].astype(str)
+
+# Now, you can use the .str accessor for string operations
+df['New_Price'] = df['New_Price'].str.replace('Lakh', '').str.replace('Cr', '', regex=True)
+
+# Handle empty strings by converting them to 0
+df['New_Price'] = df['New_Price'].replace('', '0')
+
+# Now, the 'New_Price' column should be processed correctly
+print(df)
+

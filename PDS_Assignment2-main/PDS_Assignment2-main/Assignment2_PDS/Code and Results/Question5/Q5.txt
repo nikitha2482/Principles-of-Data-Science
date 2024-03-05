@@ -1,0 +1,217 @@
+#select
+data = pd.read_csv("train.csv")
+selected_data = data[['Name', 'Year', 'Kilometers_Driven', 'Fuel_Type', 'Transmission', 'Price']]
+print(selected_data)
+
+
+ Name  Year  Kilometers_Driven Fuel_Type  \
+0     Hyundai Creta 1.6 CRDi SX Option  2015              41000    Diesel   
+1                         Honda Jazz V  2011              46000    Petrol   
+2                    Maruti Ertiga VDI  2012              87000    Diesel   
+3      Audi A4 New 2.0 TDI Multitronic  2013              40670    Diesel   
+4               Nissan Micra Diesel XV  2013              86999    Diesel   
+...                                ...   ...                ...       ...   
+5842                  Maruti Swift VDI  2014              27365    Diesel   
+5843          Hyundai Xcent 1.1 CRDi S  2015             100000    Diesel   
+5844             Mahindra Xylo D4 BSIV  2012              55000    Diesel   
+5845                Maruti Wagon R VXI  2013              46000    Petrol   
+5846             Chevrolet Beat Diesel  2011              47000    Diesel   
+
+     Transmission  Price  
+0          Manual  12.50  
+1          Manual   4.50  
+2          Manual   6.00  
+3       Automatic  17.74  
+4          Manual   3.50  
+...           ...    ...  
+5842       Manual   4.75  
+5843       Manual   4.00  
+5844       Manual   2.90  
+5845       Manual   2.65  
+5846       Manual   2.50  
+
+[5847 rows x 6 columns]
+
+
+
+#filter
+filtered_data = data[data['Fuel_Type'] == 'Diesel']
+print(filtered_data)
+
+ Unnamed: 0                               Name    Location  Year  \
+0              1   Hyundai Creta 1.6 CRDi SX Option        Pune  2015   
+2              3                  Maruti Ertiga VDI     Chennai  2012   
+3              4    Audi A4 New 2.0 TDI Multitronic  Coimbatore  2013   
+4              6             Nissan Micra Diesel XV      Jaipur  2013   
+5              7  Toyota Innova Crysta 2.8 GX AT 8S      Mumbai  2016   
+...          ...                                ...         ...   ...   
+5841        6013              Honda Amaze VX i-DTEC  Coimbatore  2015   
+5842        6014                   Maruti Swift VDI       Delhi  2014   
+5843        6015           Hyundai Xcent 1.1 CRDi S      Jaipur  2015   
+5844        6016              Mahindra Xylo D4 BSIV      Jaipur  2012   
+5846        6018              Chevrolet Beat Diesel   Hyderabad  2011   
+
+      Kilometers_Driven Fuel_Type Transmission Owner_Type     Mileage  \
+0                 41000    Diesel       Manual      First  19.67 kmpl   
+2                 87000    Diesel       Manual      First  20.77 kmpl   
+3                 40670    Diesel    Automatic     Second   15.2 kmpl   
+4                 86999    Diesel       Manual      First  23.08 kmpl   
+5                 36000    Diesel    Automatic      First  11.36 kmpl   
+...                 ...       ...          ...        ...         ...   
+5841              70602    Diesel       Manual      First   25.8 kmpl   
+5842              27365    Diesel       Manual      First   28.4 kmpl   
+5843             100000    Diesel       Manual      First   24.4 kmpl   
+5844              55000    Diesel       Manual     Second   14.0 kmpl   
+5846              47000    Diesel       Manual      First  25.44 kmpl   
+
+       Engine      Power  Seats  New_Price  Price  
+0     1582 CC  126.2 bhp    5.0        NaN  12.50  
+2     1248 CC  88.76 bhp    7.0        NaN   6.00  
+3     1968 CC  140.8 bhp    5.0        NaN  17.74  
+4     1461 CC   63.1 bhp    5.0        NaN   3.50  
+5     2755 CC  171.5 bhp    8.0    21 Lakh  17.50  
+...       ...        ...    ...        ...    ...  
+5841  1498 CC   98.6 bhp    5.0        NaN   4.83  
+5842  1248 CC     74 bhp    5.0  7.88 Lakh   4.75  
+5843  1120 CC     71 bhp    5.0        NaN   4.00  
+5844  2498 CC    112 bhp    8.0        NaN   2.90  
+5846   936 CC   57.6 bhp    5.0        NaN   2.50  
+
+[3161 rows x 14 columns]
+
+
+#rename
+renamed_data = data.rename(columns={'Kilometers_Driven': 'Km_Driven'})
+print(renamed_data)
+
+Unnamed: 0                              Name    Location  Year  \
+0              1  Hyundai Creta 1.6 CRDi SX Option        Pune  2015   
+1              2                      Honda Jazz V     Chennai  2011   
+2              3                 Maruti Ertiga VDI     Chennai  2012   
+3              4   Audi A4 New 2.0 TDI Multitronic  Coimbatore  2013   
+4              6            Nissan Micra Diesel XV      Jaipur  2013   
+...          ...                               ...         ...   ...   
+5842        6014                  Maruti Swift VDI       Delhi  2014   
+5843        6015          Hyundai Xcent 1.1 CRDi S      Jaipur  2015   
+5844        6016             Mahindra Xylo D4 BSIV      Jaipur  2012   
+5845        6017                Maruti Wagon R VXI     Kolkata  2013   
+5846        6018             Chevrolet Beat Diesel   Hyderabad  2011   
+
+      Km_Driven Fuel_Type Transmission Owner_Type     Mileage   Engine  \
+0         41000    Diesel       Manual      First  19.67 kmpl  1582 CC   
+1         46000    Petrol       Manual      First    13 km/kg  1199 CC   
+2         87000    Diesel       Manual      First  20.77 kmpl  1248 CC   
+3         40670    Diesel    Automatic     Second   15.2 kmpl  1968 CC   
+4         86999    Diesel       Manual      First  23.08 kmpl  1461 CC   
+...         ...       ...          ...        ...         ...      ...   
+5842      27365    Diesel       Manual      First   28.4 kmpl  1248 CC   
+5843     100000    Diesel       Manual      First   24.4 kmpl  1120 CC   
+5844      55000    Diesel       Manual     Second   14.0 kmpl  2498 CC   
+5845      46000    Petrol       Manual      First   18.9 kmpl   998 CC   
+5846      47000    Diesel       Manual      First  25.44 kmpl   936 CC   
+
+          Power  Seats  New_Price  Price  
+0     126.2 bhp    5.0        NaN  12.50  
+1      88.7 bhp    5.0  8.61 Lakh   4.50  
+2     88.76 bhp    7.0        NaN   6.00  
+3     140.8 bhp    5.0        NaN  17.74  
+4      63.1 bhp    5.0        NaN   3.50  
+...         ...    ...        ...    ...  
+5842     74 bhp    5.0  7.88 Lakh   4.75  
+5843     71 bhp    5.0        NaN   4.00  
+5844    112 bhp    8.0        NaN   2.90  
+5845   67.1 bhp    5.0        NaN   2.65  
+5846   57.6 bhp    5.0        NaN   2.50  
+
+[5847 rows x 14 columns]
+
+
+#mutate
+data = pd.read_csv("questionB_cleaned_data.csv")
+
+data['Mileage_per_Km'] = data['Mileage'] / data['Kilometers_Driven']
+print(data.head(5))
+
+Unnamed: 0                              Name    Location  Year  \
+0           1  Hyundai Creta 1.6 CRDi SX Option        Pune  2015   
+1           2                      Honda Jazz V     Chennai  2011   
+2           3                 Maruti Ertiga VDI     Chennai  2012   
+3           4   Audi A4 New 2.0 TDI Multitronic  Coimbatore  2013   
+4           6            Nissan Micra Diesel XV      Jaipur  2013   
+
+   Kilometers_Driven Fuel_Type Transmission Owner_Type  Mileage  Engine  \
+0              41000    Diesel       Manual      First    19.67  1582.0   
+1              46000    Petrol       Manual      First    13.00  1199.0   
+2              87000    Diesel       Manual      First    20.77  1248.0   
+3              40670    Diesel    Automatic     Second    15.20  1968.0   
+4              86999    Diesel       Manual      First    23.08  1461.0   
+
+   Power  Seats  New_Price  Price  Mileage_per_Km  
+0  126.0    5.0        NaN  12.50        0.000480  
+1   88.0    5.0        8.0   4.50        0.000283  
+2   88.0    7.0        NaN   6.00        0.000239  
+3  140.0    5.0        NaN  17.74        0.000374  
+4   63.0    5.0        NaN   3.50        0.000265  
+
+
+#arrange
+data = pd.read_csv("train.csv")
+
+sorted_data = data.sort_values(by=['Year', 'Price'], ascending=[True, False])
+print(sorted_data)
+
+Unnamed: 0                                    Name Location  Year  \
+3630        3749       Mercedes-Benz E-Class 250 D W 210   Mumbai  1998   
+5558        5716                           Maruti Zen LX   Jaipur  1998   
+3039        3138                          Maruti Zen LXI   Jaipur  1998   
+1791        1845                      Honda City 1.3 EXI     Pune  1999   
+1185        1224                           Maruti Zen VX   Jaipur  1999   
+...          ...                                     ...      ...   ...   
+2413        2492           Maruti Alto 800 2016-2019 VXI    Kochi  2019   
+5628        5789                        Renault KWID RXL    Kochi  2019   
+1315        1361           Maruti Alto 800 2016-2019 VXI   Mumbai  2019   
+4305        4438  Maruti Alto 800 2016-2019 LXI Optional   Jaipur  2019   
+3033        3132                    Porsche Cayenne Base    Kochi  2019   
+
+      Kilometers_Driven Fuel_Type Transmission Owner_Type     Mileage  \
+3630              55300    Diesel    Automatic      First   10.0 kmpl   
+5558              95150    Petrol       Manual      Third   17.3 kmpl   
+3039              95150    Petrol       Manual      Third   17.3 kmpl   
+1791             140000    Petrol       Manual      First   13.0 kmpl   
+1185              70000    Petrol       Manual     Second   17.3 kmpl   
+...                 ...       ...          ...        ...         ...   
+2413              19855    Petrol       Manual      First   24.7 kmpl   
+5628               7858    Petrol       Manual      First  25.17 kmpl   
+1315                171    Petrol       Manual      First   24.7 kmpl   
+4305               3000    Petrol       Manual      First   24.7 kmpl   
+3033              14298    Petrol    Automatic      First  13.33 kmpl   
+
+       Engine      Power  Seats  New_Price  Price  
+3630  1796 CC  157.7 bhp    5.0        NaN   3.90  
+5558   993 CC     60 bhp    5.0        NaN   0.53  
+3039   993 CC     60 bhp    5.0        NaN   0.45  
+1791  1343 CC     90 bhp    5.0        NaN   0.90  
+1185   993 CC     60 bhp    5.0        NaN   0.77  
+...       ...        ...    ...        ...    ...  
+2413   796 CC   47.3 bhp    5.0        NaN   3.80  
+5628   799 CC   53.3 bhp    5.0  4.04 Lakh   3.80  
+1315   796 CC   47.3 bhp    5.0        NaN   3.60  
+4305   796 CC   47.3 bhp    5.0        NaN   3.50  
+3033  2995 CC    340 bhp    5.0    1.36 Cr   2.02  
+
+[5847 rows x 14 columns]
+
+
+#summarize
+summary_data = data.groupby('Fuel_Type').agg({'Kilometers_Driven': 'mean', 'Price':'median'})
+
+# Print the summary
+print(summary_data)
+
+Kilometers_Driven   Price
+Fuel_Type                           
+Diesel          67464.220500   7.850
+Electric        47000.000000  12.875
+Petrol          47755.460507   4.205
+
+

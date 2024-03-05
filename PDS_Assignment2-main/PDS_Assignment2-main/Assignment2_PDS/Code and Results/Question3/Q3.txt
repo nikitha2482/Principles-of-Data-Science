@@ -1,0 +1,4 @@
+# Convert categorical variables to one-hot encoded values
+df = pd.get_dummies(df, columns=['Fuel_Type', 'Transmission'], prefix=['Fuel_Type', 'Transmission'])
+
+df.to_csv("cleaned_data.csv", index=False)

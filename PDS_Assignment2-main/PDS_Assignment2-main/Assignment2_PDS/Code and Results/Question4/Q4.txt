@@ -1,0 +1,12 @@
+import pandas as pd
+import datetime
+
+# Calculating the current year
+current_year = datetime.datetime.now().year
+
+# Creating a new column for car's age
+df['Car_Age'] = current_year - df['Year']
+
+# Print the updated DataFrame
+print(df)
+
