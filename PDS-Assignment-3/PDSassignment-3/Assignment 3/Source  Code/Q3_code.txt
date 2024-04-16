@@ -1,0 +1,41 @@
+#Question 3
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.utils import resample
+
+# Bootstrap resampling with replacement
+sample_bootstrapped = resample(df, replace=True, n_samples=500, random_state=0)
+
+# Function to compute average mean, standard deviation, and percentile
+def compute_statistics(df, percentile=98):
+    average_mean = df.mean().mean()
+    average_std = df.std().mean()
+    average_percentile = np.percentile(df, percentile).mean()
+    return average_mean, average_std, average_percentile
+
+# Compute average mean, standard deviation, and percentile for BloodPressure in the population
+average_mean_population, average_std_population, average_percentile_population = compute_statistics(df[['BloodPressure']])
+
+# Compute average mean, standard deviation, and percentile for BloodPressure in the bootstrap samples
+average_mean_samples, average_std_samples, average_percentile_samples = compute_statistics(sample_bootstrapped[['BloodPressure']])
+
+# Display the computed statistics
+print(f"Population Average Mean BloodPressure: {average_mean_population}")
+print(f"Population Average Standard Deviation BloodPressure: {average_std_population}")
+print(f"Population Average 98th Percentile BloodPressure: {average_percentile_population}")
+
+print(f"Bootstrap Samples Average Mean BloodPressure: {average_mean_samples}")
+print(f"Bootstrap Samples Average Standard Deviation BloodPressure: {average_std_samples}")
+print(f"Bootstrap Samples Average 98th Percentile BloodPressure: {average_percentile_samples}")
+# Plot the histogram comparison of BloodPressure for the population and the bootstrap samples
+fig, ax = plt.subplots()
+ax.hist(df['BloodPressure'], bins=30, alpha=0.5, label='Population')
+ax.hist(sample_bootstrapped['BloodPressure'], bins=30, alpha=0.5, label='Bootstrap Samples')
+ax.set_xlabel('BloodPressure')
+ax.set_ylabel('Frequency')
+ax.legend()
+plt.show()
+

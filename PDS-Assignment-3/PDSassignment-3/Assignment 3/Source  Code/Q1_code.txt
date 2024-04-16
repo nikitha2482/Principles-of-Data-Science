@@ -1,0 +1,36 @@
+# Question 1
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, auc
+df = pd.read_csv("/content/PDS Assignment2/diabetes.csv")
+# Set the seed for reproducibility
+np.random.seed(526)
+# Randomly select 25 observations
+sample = df.sample(n=25, random_state=0)
+# Compute the sample statistics
+sample_mean_glucose = sample['Glucose'].mean()
+sample_max_glucose = sample['Glucose'].max()
+
+# Compute the population statistics
+population_mean_glucose = df['Glucose'].mean()
+population_max_glucose = df['Glucose'].max()
+
+# Display the sample and population statistics
+print(f"Sample Mean Glucose: {sample_mean_glucose}")
+print(f"Sample Max Glucose: {sample_max_glucose}")
+print(f"Population Mean Glucose: {population_mean_glucose}")
+print(f"Population Max Glucose: {population_max_glucose}")
+
+# Plot the sample and population statistics
+fig, ax = plt.subplots()
+ax.hist(df['Glucose'], bins=25, alpha=0.5, label='Population')
+ax.hist(sample['Glucose'], bins=25, alpha=0.5, label='Sample')
+ax.set_xlabel('Glucose')
+ax.set_ylabel('Frequency')
+ax.legend()
+plt.show()
+

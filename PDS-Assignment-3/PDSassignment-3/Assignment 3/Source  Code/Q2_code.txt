@@ -1,0 +1,30 @@
+
+#Question 2
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+
+# Randomly select 25 observations
+sample = df.sample(n=25, random_state=0)
+
+# Compute the 98th percentile of BMI for the sample and the population
+sample_percentile_bmi = np.percentile(sample['BMI'], 98)
+population_percentile_bmi = np.percentile(df['BMI'], 98)
+
+# Display the 98th percentile of BMI for the sample and the population
+print(f"Sample 98th Percentile BMI: {sample_percentile_bmi}")
+print(f"Population 98th Percentile BMI: {population_percentile_bmi}")
+
+# Plot the 98th percentile of BMI for the sample and the population
+fig, ax = plt.subplots()
+ax.hist(df['BMI'], bins=25, alpha=0.5, label='Population')
+ax.hist(sample['BMI'], bins=25, alpha=0.5, label='Sample')
+ax.axvline(x=sample_percentile_bmi, color='b', linestyle='--', label='Sample 98th Percentile')
+ax.axvline(x=population_percentile_bmi, color='r', linestyle='--', label='Population 98th Percentile')
+ax.set_xlabel('BMI')
+ax.set_ylabel('Frequency')
+ax.legend()
+plt.show()
+
