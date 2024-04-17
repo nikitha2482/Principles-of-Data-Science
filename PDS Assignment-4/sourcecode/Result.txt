@@ -1,0 +1,2 @@
+Here I'm using fixer currency API and imports necessary libraries and sets up the API endpoint and list of target currencies.The fetch_exchange_rates function fetches exchange rates from the API using the specified base currency.
+The Dash app layout consists of a dropdown for selecting the base currency and a div to display exchange rates.The callback function update_exchange_rates fetches exchange rates when the base currency selection changes, and returns the exchange rates as a list of paragraph elements. 
